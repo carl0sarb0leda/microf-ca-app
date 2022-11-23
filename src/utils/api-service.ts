@@ -4,6 +4,7 @@ import {
   ErrorResponse,
   ClinicianDetailsProps,
   PatientListProps,
+  PatientDetailsProps,
 } from "types/api";
 import fetchMock from "fetch-mock";
 import { initFetchMock } from "utils/init-fetch-mock";
@@ -87,4 +88,30 @@ async function getPatientList(token: string): Promise<PatientListProps> {
     return Promise.reject(error);
   }
 }
-export { fetchLogin, getClinicianDetails, getPatientList };
+async function getPatientDetail(
+  token: string,
+  patientId: string
+): Promise<PatientDetailsProps> {
+  //Fetching Details
+  const response = await fetch(`/patient-details/${patientId}`, {
+    method: "GET",
+    headers: {
+      Authorization: token,
+    },
+  });
+  if (response.ok) {
+    //Parsing the success response
+    const data: PatientDetailsProps = await response.json();
+    return data;
+  } else {
+    //Parsing the error response
+    const { httpStatusCode, errorMessage }: ErrorResponse =
+      await response.json();
+
+    const error = {
+      message: `${httpStatusCode} - ${errorMessage}`,
+    };
+    return Promise.reject(error);
+  }
+}
+export { fetchLogin, getClinicianDetails, getPatientList, getPatientDetail };
