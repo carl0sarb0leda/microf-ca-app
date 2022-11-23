@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { PatientDataProps, TabProps } from "types/common";
+import { formatName } from "utils/fn-helper";
 import { TabNavPanel } from "./patientDetailsView.styled";
 
 interface PatientDetailsViewProps {
@@ -43,21 +44,27 @@ export const PatientDetailsView = ({
           );
         })}
       </div>
-      {parsedOptions.map((option) => (
-        <TabNavPanel
-          key={option.id}
-          role="tabpanel"
-          id={option.panelId}
-          aria-labelledby={option.id}
-          isHidden={option.id !== selectedTab.id}
-        >
-          {option.details.title}
-          {option.details.firstName}
-          {option.details.preferredName}
-          {option.details.middleName}
-          {option.details.familyName}
-        </TabNavPanel>
-      ))}
+      {parsedOptions.map((option) => {
+        const formattedName = formatName(
+          option.details.firstName,
+          option.details.preferredName
+        );
+        return (
+          <TabNavPanel
+            key={option.id}
+            role="tabpanel"
+            id={option.panelId}
+            aria-labelledby={option.id}
+            isHidden={option.id !== selectedTab.id}
+          >
+            {option.details.title} {formattedName} {option.details.middleName}{" "}
+            {option.details.familyName} {option.details.suffix}
+            <div>
+              Age: {option.details.age} Sex: {option.details.sex}
+            </div>
+          </TabNavPanel>
+        );
+      })}
     </>
   );
 };

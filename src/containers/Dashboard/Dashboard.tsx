@@ -9,6 +9,8 @@ import {
 } from "utils/api-service";
 import { useAuth } from "utils/auth-context";
 import { ClinicianDetailsView, PatientDetailsView } from "components";
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
 
 export const Dashboard = () => {
   const { token, onLogout } = useAuth();
@@ -83,11 +85,19 @@ export const Dashboard = () => {
     return null;
   };
   return (
-    <div>
-      <h2>Clinical Portal</h2>
-      <button onClick={handleLogOut}>Log out</button>
-      <ClinicianDetails />
+    <Container>
+      <Box
+        sx={{
+          display: "grid",
+          gridAutoFlow: "column",
+          alignItems: "center",
+        }}
+      >
+        <h2>Clinical Portal</h2>
+        <ClinicianDetails />
+        <button onClick={handleLogOut}>Log out</button>
+      </Box>
       <PatientDetails />
-    </div>
+    </Container>
   );
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import { ClinicianDetailsProps } from "types/api";
+import { formatName } from "utils/fn-helper";
 
 interface ClinicianDetailsViewProps {
   clinicianDetails: ClinicianDetailsProps;
@@ -8,16 +9,14 @@ interface ClinicianDetailsViewProps {
 export const ClinicianDetailsView = ({
   clinicianDetails,
 }: ClinicianDetailsViewProps) => {
-  const formattedName = clinicianDetails.preferredName
-    ? `${clinicianDetails.preferredName} (${clinicianDetails.firstName})`
-    : clinicianDetails.firstName;
+  const formattedName = formatName(
+    clinicianDetails.firstName,
+    clinicianDetails.preferredName
+  );
   return (
     <div>
-      <div>{clinicianDetails.title}</div>
-      <div>{formattedName}</div>
-      <div>{clinicianDetails.middleName}</div>
-      <div>{clinicianDetails.familyName}</div>
-      <div>{clinicianDetails.suffix}</div>
+      {clinicianDetails.title} {formattedName} {clinicianDetails.middleName}{" "}
+      {clinicianDetails.familyName} {clinicianDetails.suffix}
     </div>
   );
 };
