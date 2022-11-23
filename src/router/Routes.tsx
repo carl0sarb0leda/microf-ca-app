@@ -1,12 +1,10 @@
 import React from "react";
 import { BrowserRouter, Route, Routes as Switch } from "react-router-dom";
 import { ProtectRoute } from "./ProtectRoute";
+import { LogIn } from "containers";
 
 const NotFound = () => {
   return <div>Not found</div>;
-};
-const LogIn = () => {
-  return <div>Login</div>;
 };
 const Dashboard = () => {
   return <div>Dashboard</div>;
