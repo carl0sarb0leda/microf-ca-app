@@ -1,5 +1,6 @@
 import React from "react";
 import { LogInProps } from "types/api";
+import { fetchLogin } from "utils/api-service";
 
 type AuthContextValueProps = {
   token: string | null;
@@ -13,16 +14,26 @@ const AuthContext = React.createContext<AuthContextValueProps | undefined>(
 );
 
 const AuthProvider = ({ children }: AuthProviderProps) => {
-  const [userToken, setUserToken] = React.useState<string | null>(null);
+  const [userToken, setUserToken] = React.useState<string | null>(() => {
+    //Check possible value in session storage
+    const valueInSessionStorage = sessionStorage.getItem("session-token");
+    if (valueInSessionStorage) {
+      return valueInSessionStorage;
+    }
+    return null;
+  });
 
+  //Login based on mock api
   const handleLogin = async (loginProps: LogInProps) => {
-    const tokenResponse = "TestToken";
+    const tokenResponse = await fetchLogin(loginProps);
     setUserToken(tokenResponse);
     return !!tokenResponse;
   };
 
+  //Logout can be called to clean session storage
   const handleLogout = () => {
     setUserToken(null);
+    sessionStorage.removeItem("session-token");
   };
 
   const value = {
@@ -33,6 +44,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
+//Custom hook
 const useAuth = () => {
   const context = React.useContext(AuthContext);
   if (context === undefined) {

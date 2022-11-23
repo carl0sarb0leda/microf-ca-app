@@ -1,5 +1,6 @@
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
+import { useAuth } from "utils/auth-context";
 
 interface ProtectRouteProps {
   //JSX.Element is the only type allowed in Route element from react-router-dom
@@ -9,7 +10,7 @@ interface ProtectRouteProps {
 //ProtectRoute serves as a wrapper for element in Route
 export const ProtectRoute = ({ children }: ProtectRouteProps) => {
   //Token check
-  const token = true;
+  const { token } = useAuth();
   // Validate last location
   const location = useLocation();
   if (!token) {
