@@ -39,9 +39,9 @@ export const Dashboard = () => {
       setIsLoadingClinicianDetails(false);
     };
     const getPatientListData = async (userToken: string) => {
-      setIsLoadingPatientList(true);
       getPatientList(userToken)
         .then((patientResponse) => {
+          setIsLoadingPatientList(true);
           return Promise.all(
             patientResponse.patients.map((patient) => {
               return getPatientDetail(userToken, patient.id).then(
@@ -54,14 +54,14 @@ export const Dashboard = () => {
         })
         .then((responseValues) => {
           setPatientListData(responseValues);
+          setIsLoadingPatientList(false);
         });
-      setIsLoadingPatientList(false);
     };
     if (token) {
       getClinicianData(token);
       getPatientListData(token);
     }
-  }, []);
+  }, [token]);
 
   const ClinicianDetails = () => {
     if (isLoadingClinicianDetails) {
