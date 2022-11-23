@@ -1,5 +1,8 @@
 import React from "react";
 import { LogInProps } from "types/api";
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
+import { FormWrapper, Form, Header, Title } from "./signInForm.styled";
 
 interface SignInFormProps {
   handleData: (formValues: LogInProps) => void;
@@ -27,22 +30,35 @@ export const SignInForm = ({ handleData }: SignInFormProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Clinical Portal</h2>
-      <label>
-        Username
-        <input name="user_name" required autoComplete="off" />
-      </label>
-      <label>
-        Password
-        <input
-          type="password"
-          name="user_password"
-          required
-          autoComplete="off"
-        />
-      </label>
-      <button type="submit">Log in</button>
-    </form>
+    <Container maxWidth="sm">
+      <Box sx={{ my: 4 }}>
+        <Header>
+          <Title>Clinical Portal</Title>
+          <Title>Sign In</Title>
+        </Header>
+        <FormWrapper>
+          <Form onSubmit={handleSubmit}>
+            <div>
+              <label>
+                Username
+                <input name="user_name" required autoComplete="off" />
+              </label>
+            </div>
+            <div>
+              <label>
+                Password
+                <input
+                  type="password"
+                  name="user_password"
+                  required
+                  autoComplete="off"
+                />
+              </label>
+            </div>
+            <button type="submit">Log in</button>
+          </Form>
+        </FormWrapper>
+      </Box>
+    </Container>
   );
 };
