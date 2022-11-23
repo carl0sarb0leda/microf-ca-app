@@ -12,7 +12,7 @@ export type SessionTokenResponse = {
   sessionToken: string;
 };
 
-export type ClinicianDetailsResponse = {
+export type ClinicianDetailsProps = {
     username: string;
     role: string;
     title?: string;
