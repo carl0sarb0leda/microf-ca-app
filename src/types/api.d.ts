@@ -11,3 +11,14 @@ export type ErrorResponse = {
 export type SessionTokenResponse = {
   sessionToken: string;
 };
+
+export type ClinicianDetailsResponse = {
+    username: string;
+    role: string;
+    title?: string;
+    firstName: string;
+    preferredName?: string;
+    middleName?: string;
+    familyName: string;
+    suffix?: string;
+  }
