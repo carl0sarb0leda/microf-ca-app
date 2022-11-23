@@ -1,42 +1,61 @@
-# Create React App example with TypeScript
+# OrionHealth test app
+
+Frontend application to handle clinicians and patients.
+
+Author: Carlos Arboleda carlosaepn@gmail.com
+
+Project based on [Workflow Frontend Engineer Technical Assessment](https://github.com/orionhealth/workflow-frontend-engineer-technical-assessment):
+
+## Tech Stack
+
+- [TypeScript](https://www.typescriptlang.org/)
+- [React](https://reactjs.org/)
+- [Material UI](https://mui.com/)
+- [Emotion](https://emotion.sh/docs/introduction)
+- [fetch-mock](https://www.wheresrhys.co.uk/fetch-mock/)
+
+The routing structure was implemented using [React Router](https://reactrouter.com/en/main)
+
+The application was built considering [web accessibility standards](https://www.w3.org/WAI/)
+
+## Structure
+
+- `/components` folder contains presentational components with styles
+
+- `/containers` folder contains components with more focus on handling data and behavior
+
+- `/routes` folder contains the routing logic for protected paths
+
+- `/types` folder contains typescript definitions
+
+- `/utils/api-service` contains the handlers to fetch api
+
+- `/utils/auth-context` contains the handlers for React Provider and authentication
+
+- `/utils/fn-helper` contains helper functions
+
+## Pending work
+
+Testing is an essential pending part on hold due to the time. A good approach for unit and integration testing is [React Testing Library](https://testing-library.com/) based on [Jest](https://jestjs.io/)
+
+There are a few TODO points in the project which can be improved with more time using custom hooks for better abstraction.
+
+Some type definitions can be more flexible through generics `<T>`
+
+Styling improvement is a pending piece as well
 
 ## How to use
 
-Download the example [or clone the repo](https://github.com/mui/material-ui):
+Install dependencies
 
-<!-- #default-branch-switch -->
-
-```sh
-curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/create-react-app-with-typescript
-cd create-react-app-with-typescript
+```shell
+npm install
 ```
 
-Install it and run:
+## Running the App
 
-```sh
-npm install
+```shell
 npm start
 ```
 
-or:
-
-<!-- #default-branch-switch -->
-
-[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui/material-ui/tree/master/examples/create-react-app-with-typescript)
-
-<!-- #default-branch-switch -->
-
-[![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mui/material-ui/tree/master/examples/create-react-app-with-typescript)
-
-## The idea behind the example
-
-This example demonstrates how you can use [Create React App](https://github.com/facebookincubator/create-react-app) with [TypeScript](https://github.com/Microsoft/TypeScript).
-It includes `@mui/material` and its peer dependencies, including `emotion`, the default style engine in MUI v5.
-If you prefer, you can [use styled-components instead](https://mui.com/material-ui/guides/interoperability/#styled-components).
-
-## What's next?
-
-<!-- #default-branch-switch -->
-
-You now have a working example project.
-You can head back to the documentation, continuing browsing it from the [templates](https://mui.com/material-ui/getting-started/templates/) section.
+This should start up your browser listen on PORT: 3300.
