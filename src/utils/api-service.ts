@@ -38,7 +38,7 @@ async function fetchLogin({
     return Promise.reject(error);
   }
 }
-
+//TODO: Handlers can be abstracted in custom hook, pending task due to time
 async function getClinicianDetails(
   token: string
 ): Promise<ClinicianDetailsProps> {
