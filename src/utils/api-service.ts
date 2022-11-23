@@ -11,7 +11,7 @@ initFetchMock(fetchMock);
 async function fetchLogin({
   userName,
   userPassword,
-}: LogInProps): Promise<any> {
+}: LogInProps): Promise<string> {
   //Base64 credential
   const credential = window.btoa(userName + ":" + userPassword);
   //Fetching SessionToken
@@ -38,7 +38,9 @@ async function fetchLogin({
   }
 }
 
-async function getClinicianDetails(token: string): Promise<any> {
+async function getClinicianDetails(
+  token: string
+): Promise<ClinicianDetailsProps> {
   //Fetching Details
   const response = await fetch("/clinician-details", {
     method: "GET",
