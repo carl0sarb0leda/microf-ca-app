@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { ClinicianDetailsProps, PatientListProps } from "types/api";
-import { getClinicianDetails, getPatientList } from "utils/api-service";
+import { ClinicianDetailsProps } from "types/api";
+import { PatientDataProps } from "types/common";
+import {
+  getClinicianDetails,
+  getPatientList,
+  getPatientDetail,
+} from "utils/api-service";
 import { useAuth } from "utils/auth-context";
 import { ClinicianDetailsView, PatientDetailsView } from "components";
 
@@ -15,9 +20,10 @@ export const Dashboard = () => {
   const [isLoadingClinicianDetails, setIsLoadingClinicianDetails] =
     useState(false);
 
-  //Patient List Data
-  const [patientListData, setPatientListData] =
-    useState<PatientListProps | null>(null);
+  //Patient Data
+  const [patientListData, setPatientListData] = useState<
+    PatientDataProps[] | null
+  >(null);
   const [isLoadingPatientList, setIsLoadingPatientList] = useState(false);
 
   const handleLogOut = () => {
@@ -34,8 +40,21 @@ export const Dashboard = () => {
     };
     const getPatientListData = async (userToken: string) => {
       setIsLoadingPatientList(true);
-      const response = await getPatientList(userToken);
-      setPatientListData(response);
+      getPatientList(userToken)
+        .then((patientResponse) => {
+          return Promise.all(
+            patientResponse.patients.map((patient) => {
+              return getPatientDetail(userToken, patient.id).then(
+                (detailResponse) => {
+                  return { ...patient, details: detailResponse };
+                }
+              );
+            })
+          );
+        })
+        .then((responseValues) => {
+          setPatientListData(responseValues);
+        });
       setIsLoadingPatientList(false);
     };
     if (token) {
@@ -59,7 +78,7 @@ export const Dashboard = () => {
       return <div>Loading Patient List...</div>;
     }
     if (patientListData) {
-      return <PatientDetailsView patientList={patientListData} />;
+      return <PatientDetailsView patientListData={patientListData} />;
     }
     return null;
   };
