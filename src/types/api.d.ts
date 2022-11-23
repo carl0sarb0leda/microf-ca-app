@@ -13,12 +13,31 @@ export type SessionTokenResponse = {
 };
 
 export type ClinicianDetailsProps = {
-    username: string;
-    role: string;
-    title?: string;
-    firstName: string;
-    preferredName?: string;
-    middleName?: string;
-    familyName: string;
-    suffix?: string;
-  }
+  username: string;
+  role: string;
+  title?: string;
+  firstName: string;
+  preferredName?: string;
+  middleName?: string;
+  familyName: string;
+  suffix?: string;
+};
+
+export type PatientListProps = {
+  patients: {
+    id: string;
+    name: string;
+  };
+  [];
+};
+
+export type PatientDetailsProps = {
+  title?: string;
+  firstName: string;
+  preferredName?: string;
+  middleName?: string;
+  familyName: string;
+  suffix?: string;
+  age: number;
+  sex: "Male" | "Female" | "Unknown" | "Indeterminate";
+};

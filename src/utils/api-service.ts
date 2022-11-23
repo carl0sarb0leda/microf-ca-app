@@ -3,6 +3,7 @@ import {
   SessionTokenResponse,
   ErrorResponse,
   ClinicianDetailsProps,
+  PatientListProps,
 } from "types/api";
 import fetchMock from "fetch-mock";
 import { initFetchMock } from "utils/init-fetch-mock";
@@ -45,7 +46,6 @@ async function getClinicianDetails(
   const response = await fetch("/clinician-details", {
     method: "GET",
     headers: {
-      // Authorization: `Bearer ${token}`,
       Authorization: token,
     },
   });
@@ -64,4 +64,27 @@ async function getClinicianDetails(
     return Promise.reject(error);
   }
 }
-export { fetchLogin, getClinicianDetails };
+async function getPatientList(token: string): Promise<PatientListProps> {
+  //Fetching Details
+  const response = await fetch("/patients", {
+    method: "GET",
+    headers: {
+      Authorization: token,
+    },
+  });
+  if (response.ok) {
+    //Parsing the success response
+    const data: PatientListProps = await response.json();
+    return data;
+  } else {
+    //Parsing the error response
+    const { httpStatusCode, errorMessage }: ErrorResponse =
+      await response.json();
+
+    const error = {
+      message: `${httpStatusCode} - ${errorMessage}`,
+    };
+    return Promise.reject(error);
+  }
+}
+export { fetchLogin, getClinicianDetails, getPatientList };
