@@ -27,8 +27,7 @@ export type PatientListProps = {
   patients: {
     id: string;
     name: string;
-  };
-  [];
+  }[];
 };
 
 export type PatientDetailsProps = {
