@@ -1,10 +1,8 @@
-# OrionHealth test app
+# Clinic app
 
 Frontend application to handle clinicians and patients.
 
 Author: Carlos Arboleda carlosaepn@gmail.com
-
-Project based on [Workflow Frontend Engineer Technical Assessment](https://github.com/orionhealth/workflow-frontend-engineer-technical-assessment):
 
 ## Tech Stack
 
