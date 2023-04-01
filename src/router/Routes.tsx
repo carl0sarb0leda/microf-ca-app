@@ -1,17 +1,19 @@
 import React from 'react'
 import {
   createBrowserRouter,
+  redirect,
   RouterProvider,
   useRouteError,
 } from 'react-router-dom'
 import {ProtectRoute} from './ProtectRoute'
 import {LogIn, Dashboard} from 'containers'
+import {useAuth} from 'utils/auth-context'
 
 const NotFound = () => {
   return <div>Not found</div>
 }
 
-function ErrorBoundary() {
+const ErrorBoundary = () => {
   let error = useRouteError()
   console.error(error)
   let message
@@ -21,12 +23,20 @@ function ErrorBoundary() {
 }
 
 const Routes = () => {
+  const {token} = useAuth()
+  //Redirect to dashboard if token is present
+  const loginLoader = async () => {
+    if (token) return redirect('/dashboard')
+    return null
+  }
+
   const router = createBrowserRouter(
     [
       {
         path: '/',
         element: <LogIn />,
         errorElement: <ErrorBoundary />,
+        loader: loginLoader,
       },
       {
         path: 'dashboard',
@@ -43,7 +53,7 @@ const Routes = () => {
       },
     ],
     {
-      basename: '/portal', // Route defined for container app
+      basename: '/portal', // Basename defined for container app
     },
   )
   return <RouterProvider router={router} />
