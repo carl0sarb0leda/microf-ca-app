@@ -1,6 +1,6 @@
 {
-  "name": "create-react-app-with-typescript",
-  "version": "5.0.0",
+  "name": "microf-ca-app",
+  "version": "1.0.0",
   "homepage": "http://carl0sarb0leda.github.io/microf-ca-app",
   "private": true,
   "dependencies": {

@@ -1,4 +1,4 @@
-# Clinic portal
+# Clinical portal
 
 Frontend application to handle clinicians and patients.
 
