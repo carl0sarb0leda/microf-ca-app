@@ -61,6 +61,10 @@ export function initFetchMock(fetchMockInstance) {
       id: 'STACY-1050',
       name: 'Stacy Peters',
     },
+    {
+      id: 'HIRO-7319',
+      name: 'Hiro Takahashi',
+    },
   ]
   var JOSH_SMITH_PATIENT_DETAILS_BY_ID = {
     'STEVEA-0012': {
@@ -77,7 +81,14 @@ export function initFetchMock(fetchMockInstance) {
       middleName: 'Jane',
       familyName: 'Peters',
       age: 21,
-      sex: 'Unknown',
+      sex: 'Female',
+    },
+    'HIRO-7319': {
+      title: 'Mr',
+      firstName: 'Hiro',
+      familyName: 'Takahashi',
+      age: 41,
+      sex: 'Male',
     },
   }
   var AMY_BARKER_USERNAME = 'amyb'
