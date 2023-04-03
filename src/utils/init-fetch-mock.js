@@ -54,8 +54,8 @@ export function initFetchMock(fetchMockInstance) {
   }
   var JOSH_SMITH_PATIENTS = [
     {
-      id: 'STEVEA-0012',
-      name: 'Stevie Anderson',
+      id: 'STEV-0012',
+      name: 'Stevie Lalo',
     },
     {
       id: 'STACY-1050',
@@ -67,10 +67,10 @@ export function initFetchMock(fetchMockInstance) {
     },
   ]
   var JOSH_SMITH_PATIENT_DETAILS_BY_ID = {
-    'STEVEA-0012': {
+    'STEV-0012': {
       firstName: 'Steve',
       preferredName: 'Stevie',
-      familyName: 'Anderson',
+      familyName: 'Lalo',
       suffix: 'Jr.',
       age: 22,
       sex: 'Male',
