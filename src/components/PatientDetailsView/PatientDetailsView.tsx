@@ -2,7 +2,7 @@ import {Button, Card} from '@mui/material'
 import React, {useState} from 'react'
 import {PatientDataProps, TabProps} from 'types/common'
 import {formatName} from 'utils/fn-helper'
-import {TabNavPanel} from './patientDetailsView.styled'
+import {TabList, TabNavPanel} from './patientDetailsView.styled'
 
 interface PatientDetailsViewProps {
   patientListData: PatientDataProps[]
@@ -29,7 +29,7 @@ export const PatientDetailsView = ({
   }
   return (
     <>
-      <div role="tablist">
+      <TabList role="tablist">
         {parsedOptions.map(option => {
           return (
             <Button
@@ -46,7 +46,7 @@ export const PatientDetailsView = ({
             </Button>
           )
         })}
-      </div>
+      </TabList>
       {parsedOptions.map(option => {
         const formattedName = formatName(
           option.details.firstName,
