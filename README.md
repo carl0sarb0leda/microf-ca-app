@@ -1,16 +1,26 @@
 # Clinical portal
 
-Frontend application to handle clinicians and patients.
+Sample app to handle clinicians and patients based on user credentials. Each
+clinician has their own patients information, the data is loaded independently
+and the UI was designed to dynamically map new patients in new
+[tabs](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/tab_role)
+
+Login data are store in
+[Web storage](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API)
+and handled via a
+[React context](https://react.dev/learn/passing-data-deeply-with-context)
 
 This application has been modified as
 [micro-app](https://martinfowler.com/articles/micro-frontends.html).
 
-In production, the application can be built and placed in any storage service
-like [AWS S3](https://aws.amazon.com/s3/) or
+For this sample, we are using [GitHub pages](https://docs.github.com/en/pages)
+to enable a public host that serves the files needed to mount it in the
+container app.
+
+However, the application can be built and placed in any storage service like
+[AWS S3](https://aws.amazon.com/s3/) or
 [Google storage](https://cloud.google.com/storage/docs/introduction) and be
-served through a CDN. For this sample, we are using
-[GitHub pages](https://docs.github.com/en/pages) to enable a public host that
-serves the files needed to mount it in the container app.
+served through a CDN.
 
 Please refer to the
 [container app](https://github.com/carl0sarb0leda/microf-container-app) for more
