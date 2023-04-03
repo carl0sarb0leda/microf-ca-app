@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {Navigate} from 'react-router-dom'
 import {ClinicianDetailsProps} from 'types/api'
 import {PatientDataProps} from 'types/common'
-import {Box, Button} from '@mui/material'
+import {Container, Box, Button} from '@mui/material'
 import {
   getClinicianDetails,
   getPatientList,
@@ -10,7 +10,6 @@ import {
 } from 'utils/api-service'
 import {useAuth} from 'utils/auth-context'
 import {ClinicianDetailsView, PatientDetailsView} from 'components'
-import Container from '@mui/material/Container'
 
 export const Dashboard = () => {
   const {token, onLogout} = useAuth()
@@ -85,7 +84,7 @@ export const Dashboard = () => {
     return null
   }
   return (
-    <Container>
+    <Container maxWidth="md">
       <Box
         sx={{
           display: 'grid',

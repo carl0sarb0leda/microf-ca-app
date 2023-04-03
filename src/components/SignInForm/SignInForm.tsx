@@ -1,7 +1,6 @@
 import React from 'react'
 import {LogInProps} from 'types/api'
-import Container from '@mui/material/Container'
-import {Box, Button} from '@mui/material'
+import {Container, Box, Button} from '@mui/material'
 import {
   FormWrapper,
   Form,
